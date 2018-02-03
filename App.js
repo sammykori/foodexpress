@@ -1,41 +1,46 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import {StackNavigator} from 'react-navigation'
+// import {StackNavigator} from 'react-navigation'
 
-import LoginScreen from './screens/LoginScreen'
-import HomeScreen from './tabs/HomeScreen'
-import * as firebase from 'firebase';
+import { Auth, Home } from './router'
+import {observer} from 'mobx-react'
+import store from './store'
+// import HomeScreen from './tabs/HomeScreen'
+// import * as firebase from 'firebase';
 
-const firebaseConfig = {
-  apiKey: "AIzaSyCW0XTQzLLLsO0jFmkotJ4z1SLMCUfu4kc",
-    authDomain: "foodexpressfb.firebaseapp.com",
-    databaseURL: "https://foodexpressfb.firebaseio.com",
-    projectId: "foodexpressfb",
-    storageBucket: "foodexpressfb.appspot.com",
-}
+// const firebaseConfig = {
+//   apiKey: "AIzaSyCW0XTQzLLLsO0jFmkotJ4z1SLMCUfu4kc",
+//     authDomain: "foodexpressfb.firebaseapp.com",
+//     databaseURL: "https://foodexpressfb.firebaseio.com",
+//     projectId: "foodexpressfb",
+//     storageBucket: "foodexpressfb.appspot.com",
+// }
 
-firebase.initializeApp(firebaseConfig);
+// firebase.initializeApp(firebaseConfig);
 
+// var database = firebase.database();
+@observer
 export default class App extends React.Component {
+
+  constructor() {
+    super()
+
+    this.state = {
+      authenticated: false
+    }
+  }
+
+  changeState() {
+    this.setState({authenticated: !this.state.authenticated})
+  }
+
   render() {
-    return (
-      <AppNavigator/>
-    );
+    if (store.authenticated) {
+      return (
+        <Home />
+      )
+    } else {
+      return <Auth />
+    }
   }
 }
-const AppNavigator = StackNavigator({
-  LoginScreen:{screen : LoginScreen},
-  HomeScreen:{screen : HomeScreen}
-},{
-  initialRouteName: 'LoginScreen'
-})
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 10
-  },
-});

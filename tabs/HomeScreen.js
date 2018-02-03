@@ -12,8 +12,9 @@ const HomeScreen = TabNavigator({
   FavoriteScreen: {screen : FavoriteScreen}
 }, {
 
-  animationEnabled: true,
+  animationEnabled: false,
   tabBarPosition: 'bottom',
+ // swipeEnabled: true,
 
   tabBarComponent:props =>{
     return(

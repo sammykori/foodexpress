@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { StyleSheet, Text, View} from 'react-native';
 
-class FavoriteScreen extends Component {
+class VendTab extends Component {
   render() {
     return (
       <View>
@@ -20,4 +20,4 @@ class FavoriteScreen extends Component {
 
 }
 
-export default FavoriteScreen;
+export default VendTab;
